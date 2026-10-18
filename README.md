@@ -7,7 +7,7 @@
 [![CI](https://github.com/glichy-gem/SafePyGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/glichy-gem/SafePyGuard/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
 ![Coverage](https://img.shields.io/badge/coverage-97%25-brightgreen)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/glichy-gem/SafePyGuard/blob/main/LICENSE)
 
 </div>
 
@@ -201,7 +201,7 @@ fail_on_severity = "high"             # low | moderate | high | critical | none
 | License not in any list / unrecognized | Unknown | Add `"unknown"` to `fail_on_license` to require a review |
 | Vulnerability with unknown severity | Fails the gate | If severity can't be determined, a human should look |
 
-See [`examples/policy-strict.toml`](examples/policy-strict.toml) for a production-style policy.
+See [`examples/policy-strict.toml`](https://github.com/glichy-gem/SafePyGuard/blob/main/examples/policy-strict.toml) for a production-style policy.
 
 ---
 
@@ -217,7 +217,7 @@ See [`examples/policy-strict.toml`](examples/policy-strict.toml) for a productio
     fail-on-severity: high
 ```
 
-To show findings in the repository's **Security** tab, export SARIF and upload it — see the complete workflow in [`examples/github-workflow.yml`](examples/github-workflow.yml).
+To show findings in the repository's **Security** tab, export SARIF and upload it — see the complete workflow in [`examples/github-workflow.yml`](https://github.com/glichy-gem/SafePyGuard/blob/main/examples/github-workflow.yml).
 
 | Action input | Default |
 |---|---|
@@ -345,4 +345,4 @@ CI runs the test suite on Python 3.10–3.13 on both Ubuntu and Windows.
 
 ## License
 
-[MIT](LICENSE) © 2026 Shivam Yadav
+[MIT](https://github.com/glichy-gem/SafePyGuard/blob/main/LICENSE) © 2026 Shivam Yadav

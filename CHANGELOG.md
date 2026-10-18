@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 (2026-10-19)
+
+- Fix links in the README that returned 404 on the PyPI project page (they now point at GitHub).
+
 ## 0.1.0 (2026-10-19)
 
 First release.
