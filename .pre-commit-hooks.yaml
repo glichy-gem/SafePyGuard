@@ -1,0 +1,7 @@
+- id: safepyguard
+  name: SafePyGuard
+  description: Check requirements.txt for license policy violations and known vulnerabilities
+  entry: safepyguard scan
+  language: python
+  files: (^|/)requirements[^/]*\.txt$
+  pass_filenames: false

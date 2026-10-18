@@ -1,0 +1,55 @@
+name: SafePyGuard
+description: Check Python requirements for license policy violations and known vulnerabilities
+branding:
+  icon: shield
+  color: green
+
+inputs:
+  requirements:
+    description: Requirements file to scan
+    default: requirements.txt
+  policy:
+    description: Policy TOML file (defaults to ./safepyguard.toml if present, else the built-in policy)
+    default: ""
+  format:
+    description: Report format (table, json, markdown, sarif)
+    default: table
+  output:
+    description: Write the report to this file instead of the log
+    default: ""
+  fail-on-license:
+    description: Comma-separated license categories that fail the job, or "none"
+    default: ""
+  fail-on-severity:
+    description: Lowest vulnerability severity that fails the job (low, moderate, high, critical, none)
+    default: ""
+  python-version:
+    description: Python version used to run SafePyGuard
+    default: "3.12"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install SafePyGuard
+      shell: bash
+      run: pip install "${{ github.action_path }}"
+    - name: Scan
+      shell: bash
+      # Inputs go through env vars so they can't inject shell code.
+      env:
+        SPG_REQUIREMENTS: ${{ inputs.requirements }}
+        SPG_POLICY: ${{ inputs.policy }}
+        SPG_FORMAT: ${{ inputs.format }}
+        SPG_OUTPUT: ${{ inputs.output }}
+        SPG_FAIL_ON_LICENSE: ${{ inputs.fail-on-license }}
+        SPG_FAIL_ON_SEVERITY: ${{ inputs.fail-on-severity }}
+      run: |
+        args=(scan -r "$SPG_REQUIREMENTS" -f "$SPG_FORMAT")
+        if [ -n "$SPG_POLICY" ]; then args+=(--policy "$SPG_POLICY"); fi
+        if [ -n "$SPG_OUTPUT" ]; then args+=(-o "$SPG_OUTPUT"); fi
+        if [ -n "$SPG_FAIL_ON_LICENSE" ]; then args+=(--fail-on-license "$SPG_FAIL_ON_LICENSE"); fi
+        if [ -n "$SPG_FAIL_ON_SEVERITY" ]; then args+=(--fail-on-severity "$SPG_FAIL_ON_SEVERITY"); fi
+        safepyguard "${args[@]}"

@@ -1,0 +1,19 @@
+# A stricter policy than the built-in one, for production services.
+# Use it with: safepyguard scan -r requirements.txt --policy examples/policy-strict.toml
+
+[licenses]
+approved = ["MIT", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0", "ISC", "PSF-2.0"]
+restricted = ["MPL-2.0"]
+denied = ["GPL-*", "AGPL-*", "LGPL-*", "SSPL-*", "BUSL-*", "CC-BY-NC-*"]
+
+[exceptions]
+# certifi ships Mozilla's CA bundle under MPL-2.0; we use it unmodified.
+certifi = { category = "approved", reason = "Unmodified use of MPL-2.0 data, approved by legal" }
+
+[vulnerabilities]
+ignore = []
+
+[gate]
+# Licenses SafePyGuard can't identify must be reviewed before merging.
+fail_on_license = ["denied", "unknown"]
+fail_on_severity = "moderate"

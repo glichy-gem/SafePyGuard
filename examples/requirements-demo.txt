@@ -1,0 +1,7 @@
+# Demo requirements for SafePyGuard: a mix of licenses and known vulnerabilities.
+requests==2.19.0        # Apache-2.0, has known CVEs (fixed in 2.20.0+)
+django==3.2.0           # BSD-3-Clause, many known vulnerabilities
+PyQt5==5.15.0           # GPL-3.0: denied by the default policy
+certifi==2024.8.30      # MPL-2.0: restricted by the default policy
+numpy>=1.26             # unpinned: SafePyGuard checks the newest matching release
+click==8.1.7            # BSD-3-Clause, clean
