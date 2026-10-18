@@ -1,0 +1,37 @@
+# SafePyGuard policy
+#
+# License ids are SPDX ids (https://spdx.org/licenses/). Wildcards are allowed: "GPL-*".
+# When an id matches several lists, exact entries win over wildcards, and
+# denied > restricted > approved. Anything not listed is "unknown".
+
+[licenses]
+approved = [
+    "MIT", "MIT-0", "MIT-CMU", "X11",
+    "BSD-2-Clause", "BSD-3-Clause", "BSD-3-Clause-Clear", "0BSD",
+    "Apache-2.0", "ISC", "PSF-2.0", "Python-2.0", "Python-2.0.1",
+    "Unlicense", "CC0-1.0", "Zlib", "BSL-1.0", "HPND", "UPL-1.0",
+    "NCSA", "PostgreSQL", "Unicode-3.0", "LicenseRef-Public-Domain",
+]
+# Allowed, but needs a review (weak copyleft, or not a standard license).
+restricted = [
+    "LGPL-*", "MPL-*", "EPL-*", "CDDL-*", "EUPL-*", "Artistic-*",
+    "LicenseRef-Proprietary",
+]
+# Not allowed (strong copyleft or non-commercial).
+denied = [
+    "GPL-*", "AGPL-*", "SSPL-*", "BUSL-*", "CC-BY-NC-*",
+]
+
+# Per-package overrides, e.g. after legal approval:
+[exceptions]
+# "some-package" = { category = "approved", reason = "Approved by legal, ticket LEGAL-123" }
+
+[vulnerabilities]
+# Vulnerability ids (or aliases such as CVE ids) to ignore:
+ignore = []
+
+[gate]
+# Which license categories fail the scan: approved / restricted / denied / unknown
+fail_on_license = ["denied"]
+# Lowest vulnerability severity that fails the scan: low / moderate / high / critical / none
+fail_on_severity = "high"
