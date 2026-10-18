@@ -97,7 +97,7 @@ FAILED
 Requires **Python 3.10+**.
 
 ```bash
-pip install git+https://github.com/glichy-gem/SafePyGuard.git
+pip install safepyguard
 ```
 
 <details>
@@ -242,7 +242,7 @@ repos:
 ### Any other CI (GitLab, Jenkins, Azure DevOps…)
 
 ```bash
-pip install git+https://github.com/glichy-gem/SafePyGuard.git
+pip install safepyguard
 safepyguard scan -r requirements.txt -f markdown -o safepyguard-report.md
 ```
 
